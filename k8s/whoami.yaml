@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  metadata:
+  name: whoami
+  labels:
+    app: whoami
+spec:
+  
+  replicas: 1
+  
+  selector:
+    matchLabels:
+      app: whoami
+  strategy:
+  template:
+    metadata:
+      labels:
+        app: whoami
+    spec:
+      containers:
+      - image: traefik/whoami
+        name: whoami
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
